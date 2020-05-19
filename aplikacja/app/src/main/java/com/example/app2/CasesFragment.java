@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,12 +30,13 @@ import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class CasesFragment extends Fragment {
+public class CasesFragment extends Fragment implements View.OnClickListener{
 
     private TextView confirmed;
     private TextView deaths;
     private TextView active;
     private TextView recovered;
+    private ImageButton showCharts;
 
     @Nullable
     @Override
@@ -45,6 +47,9 @@ public class CasesFragment extends Fragment {
         deaths = view.findViewById(R.id.allDeaths);
         active = view.findViewById(R.id.allActive);
         recovered = view.findViewById(R.id.allRecovered);
+
+        showCharts = view.findViewById(R.id.imageButton19);
+        showCharts.setOnClickListener(this);
         
         getData();
 
@@ -83,5 +88,14 @@ public class CasesFragment extends Fragment {
             queue.add(stringRequest);
     }
 
-
+    @Override
+    public void onClick(View v)
+    {
+        switch (v.getId())
+        {
+            case R.id.imageButton19:
+                Log.d("TEST", "button clicked");
+                break;
+        }
+    }
 }

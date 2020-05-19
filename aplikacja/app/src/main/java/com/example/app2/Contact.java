@@ -31,13 +31,7 @@ public class Contact extends AppCompatActivity implements View.OnClickListener
 
         callNFZ.setOnClickListener(this);
         callFromAbroad.setOnClickListener(this);
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        back.setOnClickListener(this);
     }
 
     public void call(View v, String number)
@@ -49,9 +43,7 @@ public class Contact extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onClick(View v)
     {
-        int id = v.getId();
-
-        switch (id)
+        switch (v.getId())
         {
             case R.id.callNFZ:
                 number = "800190590";
@@ -61,35 +53,10 @@ public class Contact extends AppCompatActivity implements View.OnClickListener
                 number = "221256600";
                 call(v, number);
                 break;
+            case R.id.backToMain:
+                finish();
+                break;
         }
-
     }
-
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Fragment selectedFragment = null;
-
-                    switch (item.getItemId()) {
-                        case R.id.navbar_home:
-                            selectedFragment = new HomeFragment();
-                            break;
-                        case R.id.navbar_cases:
-                            selectedFragment = new CasesFragment();
-                            break;
-                        case R.id.navbar_news:
-                            selectedFragment = new NewsFragment();
-                            break;
-                        case R.id.navbar_symptoms:
-                            selectedFragment = new SymptomsFragment();
-                            break;
-                    }
-
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
-
-                    return true;
-                }
-            };
 }
 
