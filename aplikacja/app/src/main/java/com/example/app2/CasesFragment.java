@@ -2,6 +2,7 @@ package com.example.app2;
 
 import java.util.*;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -94,7 +95,8 @@ public class CasesFragment extends Fragment implements View.OnClickListener{
         switch (v.getId())
         {
             case R.id.imageButton19:
-                Log.d("TEST", "button clicked");
+                Intent intentLoadNewActivity = new Intent(getActivity(), GraphActivity.class);
+                startActivity(intentLoadNewActivity);
                 break;
         }
     }

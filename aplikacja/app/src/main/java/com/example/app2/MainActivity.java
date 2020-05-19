@@ -6,14 +6,15 @@ import androidx.fragment.app.Fragment;
 
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
-import android.os.Handler;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentLoadNewActivity = new Intent(MainActivity.this, List.class);
+                Intent intentLoadNewActivity = new Intent(MainActivity.this, ListActivity.class);
                 startActivity(intentLoadNewActivity);
             }
         });
@@ -73,6 +74,12 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new SymptomsFragment();
                             break;
                     }
+
+                    // TODO
+                    // Sprawdzanie czy selectedFragment to ta sama klasa co aktualnie
+                    // wyświetlany na ekranie fragment. Jeśli tak, to nie robimy poniższego commita.
+                    // Zapobiega to np. ponownemu ładowaniu statystyk gdy klikniemy przycisk
+                    // "Przypadki" znajdując się aktualnie w sekcji "Przypadki".
 
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
 

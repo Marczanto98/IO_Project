@@ -12,7 +12,7 @@
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="159dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
@@ -22,7 +22,7 @@
         android:layout_marginLeft="73dp"
         android:layout_marginEnd="68dp"
         android:layout_marginRight="68dp"
-        android:layout_marginBottom="383dp"
+        android:layout_marginBottom="353dp"
         android:background="@drawable/info"
         android:fontFamily="@font/micros"
         app:layout_constraintBottom_toBottomOf="parent"
