@@ -47,6 +47,10 @@ public class ListActivity<C> extends AppCompatActivity {
                 {
                     case R.id.add_btn:
                         String itemEntered = editText.getText().toString();
+                        if (itemEntered.equals("")) {
+                            Toast.makeText(ListActivity.this, "Wprowadź nazwę produktu", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
                         adapter.add(itemEntered);
                         editText.setText("");
                         FileHelper.writeData(items, ListActivity.this);
