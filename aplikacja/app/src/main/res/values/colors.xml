@@ -8,8 +8,13 @@
     <color name="red">#BB4141</color>
     <color name="ligth_red">#aa6667</color>
     <color name="gray">#696969</color>
-    <color name="black">#8CFFFFFF</color>
+    <color name="light_gray">#8CFFFFFF</color>
     <color name="dirty_red">#C06262</color>
     <color name="light_grey">#F6F6F6</color>
     <color name="medium_grey">#E9E8E8</color>
+    <color name="black">#000000</color>
+    <color name="blue">#39A6FA</color>
+    <color name="green">#00EE37</color>
+    <color name="yellow">#EEE600</color>
+    <color name="bright_red">#EA0303</color>
 </resources>
