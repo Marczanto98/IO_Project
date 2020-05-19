@@ -42,7 +42,7 @@ public class List<C> extends AppCompatActivity {
         setContentView(R.layout.activity_list);
 
         editText = findViewById(R.id.item_edit_text);
-        btn = (ImageButton) findViewById(R.id.add_btn);
+        btn = findViewById(R.id.add_btn);
         itemList = findViewById(R.id.items_list);
         back = findViewById(R.id.back);
 
@@ -50,12 +50,6 @@ public class List<C> extends AppCompatActivity {
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
         itemList.setAdapter(adapter);
-
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
-        bottomNav.setOnNavigationItemSelectedListener(navListener);
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
-
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,31 +85,4 @@ public class List<C> extends AppCompatActivity {
             }
         });
     }
-
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Fragment selectedFragment = null;
-
-                    switch (item.getItemId()) {
-                        case R.id.navbar_home:
-                            selectedFragment = new HomeFragment();
-                            break;
-                        case R.id.navbar_cases:
-                            selectedFragment = new CasesFragment();
-                            break;
-                        case R.id.navbar_news:
-                            selectedFragment = new NewsFragment();
-                            break;
-                        case R.id.navbar_symptoms:
-                            selectedFragment = new SymptomsFragment();
-                            break;
-                    }
-
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
-
-                    return true;
-                }
-            };
 }
