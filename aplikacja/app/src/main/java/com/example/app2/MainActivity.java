@@ -16,7 +16,6 @@ import android.widget.ImageButton;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-//    private static int SPLASH_TIME_OUT = 4000;
 
     ImageButton imageButton;
     ImageButton newsButton;
@@ -26,14 +25,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                Intent homeIntent = new Intent(MainActivity.this, HomeActivity.class);
-//                startActivity(homeIntent);
-//                finish();
-//            }
-//        }, SPLASH_TIME_OUT);
 
         imageButton = (ImageButton)findViewById(R.id.shopping_list);
         contactButton = (ImageButton)findViewById(R.id.contactButton);
