@@ -35,8 +35,7 @@ public class Contact extends AppCompatActivity implements View.OnClickListener
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentLoadNewActivity = new Intent(Contact.this, MainActivity.class);
-                startActivity(intentLoadNewActivity);
+                finish();
             }
         });
     }
@@ -44,6 +43,7 @@ public class Contact extends AppCompatActivity implements View.OnClickListener
     public void call(View v, String number)
     {
         startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+number)));
+        finish();
     }
 
     @Override
