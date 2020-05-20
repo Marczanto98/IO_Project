@@ -118,6 +118,7 @@ public class CasesFragment extends Fragment implements View.OnClickListener{
             case R.id.imageButton19:
                 if (data != null) {
                     Intent intentLoadNewActivity = new Intent(getActivity(), GraphActivity.class);
+                    intentLoadNewActivity.putExtra("data", data);
                     startActivity(intentLoadNewActivity);
                 }
                 break;
