@@ -2,7 +2,9 @@ package com.example.app2;
 
 import java.util.*;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,13 +33,14 @@ import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+
 public class CasesFragment extends Fragment implements View.OnClickListener{
 
     private TextView confirmed;
     private TextView deaths;
     private TextView active;
     private TextView recovered;
-    private ImageButton showCharts;
+    private HashMap<String, String> data;
 
     @Nullable
     @Override
@@ -48,16 +51,17 @@ public class CasesFragment extends Fragment implements View.OnClickListener{
         deaths = view.findViewById(R.id.allDeaths);
         active = view.findViewById(R.id.allActive);
         recovered = view.findViewById(R.id.allRecovered);
+        data = null;
 
-        showCharts = view.findViewById(R.id.imageButton19);
+        ImageButton showCharts = view.findViewById(R.id.imageButton19);
         showCharts.setOnClickListener(this);
-        
-        getData();
+
+        getDataAndSetValues();
 
         return view;
     }
 
-    private void getData() {
+    private void getDataAndSetValues() {
         RequestQueue queue = Volley.newRequestQueue(getActivity());
 
         String url = "https://disease.sh/v2/countries/poland?allowNull=true";
@@ -69,10 +73,14 @@ public class CasesFragment extends Fragment implements View.OnClickListener{
                 {
                     JSONObject jsonObject = new JSONObject(response.toString());
 
-                    confirmed.setText(jsonObject.getString("cases"));
-                    deaths.setText(jsonObject.getString("deaths"));
-                    active.setText(jsonObject.getString("active"));
-                    recovered.setText(jsonObject.getString("recovered"));
+                    data = new HashMap<>();
+
+                    data.put("confirmed", jsonObject.getString("cases"));
+                    data.put("deaths", jsonObject.getString("deaths"));
+                    data.put("active", jsonObject.getString("active"));
+                    data.put("recovered", jsonObject.getString("recovered"));
+
+                    setStatValues();
                 }
                 catch (JSONException e)
                 {
@@ -80,13 +88,21 @@ public class CasesFragment extends Fragment implements View.OnClickListener{
                 }
             }
         }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error)
-                    {
-                        Log.d("Error Response", error.toString());
-                    }
-                });
-            queue.add(stringRequest);
+            @Override
+            public void onErrorResponse(VolleyError error)
+            {
+                Log.d("Error Response", error.toString());
+            }
+        });
+
+        queue.add(stringRequest);
+    }
+
+    private void setStatValues() {
+        confirmed.setText(data.get("confirmed"));
+        deaths.setText(data.get("deaths"));
+        active.setText(data.get("active"));
+        recovered.setText(data.get("recovered"));
     }
 
     @Override
@@ -95,8 +111,10 @@ public class CasesFragment extends Fragment implements View.OnClickListener{
         switch (v.getId())
         {
             case R.id.imageButton19:
-                Intent intentLoadNewActivity = new Intent(getActivity(), GraphActivity.class);
-                startActivity(intentLoadNewActivity);
+                if (data != null) {
+                    Intent intentLoadNewActivity = new Intent(getActivity(), GraphActivity.class);
+                    startActivity(intentLoadNewActivity);
+                }
                 break;
         }
     }
