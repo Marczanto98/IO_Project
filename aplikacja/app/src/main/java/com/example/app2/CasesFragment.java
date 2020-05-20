@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,6 +92,10 @@ public class CasesFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onErrorResponse(VolleyError error)
             {
+                Toast toast = Toast.makeText(getActivity(), "Błąd pobierania danych.\nSprawdź połączenie sieciowe.", Toast.LENGTH_LONG);
+                TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+                if (v != null) { v.setGravity(Gravity.CENTER); } // centering the displayed message
+                toast.show();
                 Log.d("Error Response", error.toString());
             }
         });
