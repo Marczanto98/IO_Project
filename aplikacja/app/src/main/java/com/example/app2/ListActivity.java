@@ -20,7 +20,6 @@ public class ListActivity<C> extends AppCompatActivity {
     private EditText editText;
     private ListView itemList;
     private ImageButton btn;
-    private ImageButton back;
 
     private ArrayList<String> items;
     private ArrayAdapter<String> adapter;
@@ -33,7 +32,6 @@ public class ListActivity<C> extends AppCompatActivity {
         editText = findViewById(R.id.item_edit_text);
         btn = findViewById(R.id.add_btn);
         itemList = findViewById(R.id.items_list);
-        back = findViewById(R.id.back);
 
         items = FileHelper.readData(this);
 
@@ -70,12 +68,5 @@ public class ListActivity<C> extends AppCompatActivity {
             }
         });
 
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 }
