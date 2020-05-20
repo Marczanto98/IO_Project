@@ -18,7 +18,6 @@ public class Contact extends AppCompatActivity implements View.OnClickListener
     ImageButton callNFZ;
     ImageButton callFromAbroad;
     public String number;
-    ImageButton back;
 
     @Override
     protected void onCreate(Bundle saveInstanceState){
@@ -27,11 +26,9 @@ public class Contact extends AppCompatActivity implements View.OnClickListener
 
         callNFZ = findViewById(R.id.callNFZ);
         callFromAbroad = findViewById(R.id.callFromAbroad);
-        back = findViewById(R.id.backToMain);
 
         callNFZ.setOnClickListener(this);
         callFromAbroad.setOnClickListener(this);
-        back.setOnClickListener(this);
     }
 
     public void call(View v, String number)
@@ -52,9 +49,6 @@ public class Contact extends AppCompatActivity implements View.OnClickListener
             case R.id.callFromAbroad:
                 number = "221256600";
                 call(v, number);
-                break;
-            case R.id.backToMain:
-                finish();
                 break;
         }
     }
