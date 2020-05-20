@@ -45,9 +45,14 @@ public class GraphActivity extends AppCompatActivity {
         for (int i = 0; i < numDataPoints; ++i) {
             x += 0.1;
             y = Math.sin(x);
-            series1.appendData(new DataPoint(x, y), true, 100);
+            series1.appendData(new DataPoint(x, y), false, 100);
         }
 
         graph.addSeries(series1);
+
+        graph.getViewport().setScrollable(true); // enables horizontal scrolling
+        graph.getViewport().setScrollableY(true); // enables vertical scrolling
+        graph.getViewport().setScalable(true); // enables horizontal zooming and scrolling
+        graph.getViewport().setScalableY(true); // enables vertical zooming and scrolling
     }
 }
