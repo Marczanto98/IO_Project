@@ -27,6 +27,10 @@
             android:name=".Contact"
             android:label="Contact"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Advice"
+            android:label="Advice"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
