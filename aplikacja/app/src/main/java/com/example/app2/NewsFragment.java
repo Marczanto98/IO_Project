@@ -1,5 +1,7 @@
 package com.example.app2;
+import com.example.app2.Adapter;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,8 +32,9 @@ public class NewsFragment extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private List<Article> articles = new ArrayList<>();
-    private NewAdapter adapter;
+    private Adapter adapter;
     private String TAG = NewsFragment.class.getSimpleName();
+    Adapter.OnItemClickListener onItemClickListener;
 
     @Nullable
     @Override
@@ -44,13 +47,15 @@ public class NewsFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setNestedScrollingEnabled(false);
 
+        adapter = new Adapter(articles, getActivity().getApplicationContext());
+        adapter.setOnItemClickListener((a, x) -> {System.out.println("d");});
+        recyclerView.setAdapter(adapter);
         LoadJson();
 
         return view;
     }
 
-    public void LoadJson()
-    {
+    public void LoadJson() {
         ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
 
         String country = Utils.getCountry();
@@ -61,20 +66,16 @@ public class NewsFragment extends Fragment {
         call.enqueue(new Callback<News>() {
             @Override
             public void onResponse(Call<News> call, Response<News> response) {
-                if(response.isSuccessful() && response.body().getArticles() != null)
-                {
-                    if(articles.isEmpty())
-                    {
+                if (response.isSuccessful() && response.body().getArticles() != null) {
+                    if (articles.isEmpty()) {
                         articles.clear();
                     }
 
                     articles = response.body().getArticles();
-                    adapter = new NewAdapter(articles, getContext());
+                    adapter = new Adapter(articles, getActivity().getApplicationContext());
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
-                }
-                else
-                {
+                } else {
                     Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -82,6 +83,28 @@ public class NewsFragment extends Fragment {
             @Override
             public void onFailure(Call<News> call, Throwable t) {
 
+            }
+        });
+    }
+
+    private void initListner()
+    {
+        adapter.setOnItemClickListener(new Adapter.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(View view, int position)
+            {
+                Intent intent = new Intent(getContext(), NewsDetailActivity.class);
+
+                Article article = articles.get(position);
+                intent.putExtra("url", article.getUrl());
+                intent.putExtra("title", article.getTitle());
+                intent.putExtra("img", article.getUrlToImage());
+                intent.putExtra("date", article.getPublishedAt());
+                intent.putExtra("source", article.getSource().getName());
+                intent.putExtra("author", article.getAuthor());
+
+                startActivity(intent);
             }
         });
     }
