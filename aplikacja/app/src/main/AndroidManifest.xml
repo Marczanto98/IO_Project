@@ -23,6 +23,15 @@
             android:name=".Contact"
             android:label="Contact"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".AllAlarms"
+            android:label="Alarms"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".AlarmActivity"
+            android:label="NewAlarmActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <receiver android:name=".AlarmReceiver"/>
         <activity android:name=".MainActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>

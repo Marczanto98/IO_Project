@@ -3,6 +3,7 @@ package com.example.app2;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 
 import android.content.Intent;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton imageButton;
     ImageButton newsButton;
     ImageButton contactButton;
+    ImageButton alarmButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         contactButton = (ImageButton)findViewById(R.id.contactButton);
 //        newsButton = (ImageButton)findViewById(R.id.news_btn);
 //
+        alarmButton = (ImageButton)findViewById(R.id.alarmButton);
+
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,6 +47,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentLoadNewActivity = new Intent(MainActivity.this, Contact.class);
+                startActivity(intentLoadNewActivity);
+            }
+        });
+
+        alarmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentLoadNewActivity = new Intent(MainActivity.this, AllAlarms.class);
                 startActivity(intentLoadNewActivity);
             }
         });
@@ -80,10 +92,24 @@ public class MainActivity extends AppCompatActivity {
                     // wyświetlany na ekranie fragment. Jeśli tak, to nie robimy poniższego commita.
                     // Zapobiega to np. ponownemu ładowaniu statystyk gdy klikniemy przycisk
                     // "Przypadki" znajdując się aktualnie w sekcji "Przypadki".
+                    Fragment f = getVisibleFragment();
+                    if(!f.getClass().equals(selectedFragment.getClass())) {
 
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
-
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                    }
                     return true;
+                }
+
+                public Fragment getVisibleFragment(){
+                    FragmentManager fragmentManager = MainActivity.this.getSupportFragmentManager();
+                    List<Fragment> fragments = fragmentManager.getFragments();
+                    if(fragments != null){
+                        for(Fragment fragment : fragments){
+                            if(fragment != null && fragment.isVisible())
+                                return fragment;
+                        }
+                    }
+                    return null;
                 }
             };
 }
