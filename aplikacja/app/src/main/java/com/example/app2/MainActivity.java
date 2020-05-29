@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton imageButton;
     ImageButton newsButton;
     ImageButton contactButton;
+    ImageButton adviceButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +30,9 @@ public class MainActivity extends AppCompatActivity {
 
         imageButton = (ImageButton)findViewById(R.id.shopping_list);
         contactButton = (ImageButton)findViewById(R.id.contactButton);
-//        newsButton = (ImageButton)findViewById(R.id.news_btn);
-//
+//      newsButton = (ImageButton)findViewById(R.id.news_btn);
+        adviceButton = (ImageButton)findViewById(R.id.advice_button);
+
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentLoadNewActivity = new Intent(MainActivity.this, Contact.class);
+                startActivity(intentLoadNewActivity);
+            }
+        });
+
+        adviceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentLoadNewActivity = new Intent(MainActivity.this, Advice.class);
                 startActivity(intentLoadNewActivity);
             }
         });
