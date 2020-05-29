@@ -69,7 +69,7 @@
             app:srcCompat="@drawable/kontakt_btn" />
 
         <ImageButton
-            android:id="@+id/imageButton7"
+            android:id="@+id/advice_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"

@@ -14,14 +14,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GraphActivity"></activity>
+        <activity
+            android:name=".NewsDetailActivity"
+            android:label="@string/title_activity_news_detail"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".GraphActivity" />
         <activity
             android:name=".ListActivity"
             android:label="@string/title_activity_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Contact"
             android:label="Contact"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Advice"
+            android:label="Advice"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".AllAlarms"
