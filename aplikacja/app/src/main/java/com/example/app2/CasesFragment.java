@@ -2,6 +2,7 @@ package com.example.app2;
 
 import java.util.*;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -58,6 +59,7 @@ public class CasesFragment extends Fragment implements View.OnClickListener{
         showCharts.setOnClickListener(this);
 
         getDataAndSetValues();
+       // startCountAnimation();
 
         return view;
     }
@@ -81,7 +83,11 @@ public class CasesFragment extends Fragment implements View.OnClickListener{
                     data.put("active", jsonObject.getString("active"));
                     data.put("recovered", jsonObject.getString("recovered"));
 
-                    setStatValues();
+                    //setStatValues();
+                    startCountAnimation(Integer.parseInt(data.get("confirmed")), confirmed);
+                    startCountAnimation(Integer.parseInt(data.get("deaths")), deaths);
+                    startCountAnimation(Integer.parseInt(data.get("active")), active);
+                    startCountAnimation(Integer.parseInt(data.get("recovered")), recovered);
                 }
                 catch (JSONException e)
                 {
@@ -103,12 +109,6 @@ public class CasesFragment extends Fragment implements View.OnClickListener{
         queue.add(stringRequest);
     }
 
-    private void setStatValues() {
-        confirmed.setText(data.get("confirmed"));
-        deaths.setText(data.get("deaths"));
-        active.setText(data.get("active"));
-        recovered.setText(data.get("recovered"));
-    }
 
     @Override
     public void onClick(View v)
@@ -123,5 +123,16 @@ public class CasesFragment extends Fragment implements View.OnClickListener{
                 }
                 break;
         }
+    }
+
+    private void startCountAnimation(int value, TextView txt) {
+        ValueAnimator animator = ValueAnimator.ofInt(0,value);
+        animator.setDuration(3000);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                txt.setText(animation.getAnimatedValue().toString());
+            }
+        });
+        animator.start();
     }
 }
