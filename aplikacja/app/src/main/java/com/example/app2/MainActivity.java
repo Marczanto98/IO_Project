@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton newsButton;
     ImageButton contactButton;
     ImageButton alarmButton;
+    ImageButton adviceButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 //        newsButton = (ImageButton)findViewById(R.id.news_btn);
 //
         alarmButton = (ImageButton)findViewById(R.id.alarmButton);
+        adviceButton = (ImageButton)findViewById(R.id.advice_button);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +57,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentLoadNewActivity = new Intent(MainActivity.this, AllAlarms.class);
+                startActivity(intentLoadNewActivity);
+            }
+        });
+
+        adviceButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intentLoadNewActivity = new Intent(MainActivity.this, Advice.class);
                 startActivity(intentLoadNewActivity);
             }
         });
@@ -87,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
                             break;
                     }
 
-                    // TODO
                     // Sprawdzanie czy selectedFragment to ta sama klasa co aktualnie
                     // wyświetlany na ekranie fragment. Jeśli tak, to nie robimy poniższego commita.
                     // Zapobiega to np. ponownemu ładowaniu statystyk gdy klikniemy przycisk
