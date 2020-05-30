@@ -32,6 +32,10 @@
             android:label="Advice"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
+            android:name=".Information"
+            android:label="Information"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".AllAlarms"
             android:label="Alarms"
             android:theme="@style/AppTheme.NoActionBar"></activity>
