@@ -20,40 +20,22 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
     ImageButton rateUsButton;
     Button importButton;
     Button exportButton;
-    Button statsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         mailButton = (ImageButton)findViewById(R.id.mail_button);
-        rateUsButton = (ImageButton)findViewById(R.id.rateUsButton);
         darkModeSwitch = (Switch)findViewById(R.id.darkModeSwitch);
         pushButton = (Switch)findViewById(R.id.pushSwitch);
         importButton = (Button)findViewById(R.id.importButton);
         exportButton = (Button)findViewById(R.id.exportButton);
-        statsButton = (Button)findViewById(R.id.statsButton);
 
         mailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intentLoadNewActivity = new Intent(Settings.this, Email.class);
                 startActivity(intentLoadNewActivity);
-            }
-        });
-
-        rateUsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rateUs(v);
-            }
-            public void rateUs(View v){
-                try{
-                    //TODO docelowo w tym miejscu powinna byc nasza aplikacja, narazie testowo chrome
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + "com.android.chrome")));
-                }catch (ActivityNotFoundException exc){
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + "com.android.chrome")));
-                }
             }
         });
 

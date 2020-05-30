@@ -10,8 +10,8 @@
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="249dp">
 
         <TextView
             android:id="@+id/textView11"
@@ -67,28 +67,15 @@
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/textView15"
-            android:layout_width="245dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView12"
-            android:layout_alignStart="@+id/textView12"
-            android:layout_alignLeft="@+id/textView12"
-            android:layout_marginStart="-0dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="128dp"
-            android:text="Oceń aplikację"
-            android:textSize="24sp" />
-
-        <TextView
             android:id="@+id/textView18"
             android:layout_width="245dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView12"
             android:layout_alignStart="@+id/textView12"
             android:layout_alignLeft="@+id/textView12"
-            android:layout_marginStart="0dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="176dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="117dp"
             android:text="Napisz do nas"
             android:textSize="24sp" />
 
@@ -119,10 +106,10 @@
             android:id="@+id/mail_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/rateUsButton"
-            android:layout_marginStart="61dp"
-            android:layout_marginLeft="61dp"
-            android:layout_marginTop="26dp"
+            android:layout_below="@+id/pushSwitch"
+            android:layout_marginStart="52dp"
+            android:layout_marginLeft="52dp"
+            android:layout_marginTop="44dp"
             android:layout_toEndOf="@+id/textView18"
             android:layout_toRightOf="@+id/textView18"
             android:background="#FFFFFF"
@@ -147,20 +134,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/statsButton"
-            android:layout_width="223dp"
-            android:layout_height="62dp"
-            android:layout_below="@+id/textView18"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="179dp"
-            android:background="@drawable/rounded_btn"
-            android:text="Synchronizuj statystyki"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
             android:id="@+id/exportButton"
             android:layout_width="150dp"
             android:layout_height="116dp"
@@ -176,20 +149,6 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/rateUsButton"
-            style="@style/Widget.AppCompat.ImageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/pushSwitch"
-            android:layout_marginStart="59dp"
-            android:layout_marginLeft="59dp"
-            android:layout_marginTop="40dp"
-            android:layout_toEndOf="@+id/textView15"
-            android:layout_toRightOf="@+id/textView15"
-            android:background="@color/light_gray"
-            app:srcCompat="@android:drawable/btn_star_big_on" />
 
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
