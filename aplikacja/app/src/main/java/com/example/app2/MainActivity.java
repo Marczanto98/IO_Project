@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton alarmButton;
     ImageButton adviceButton;
     ImageButton informationButton;
+    ImageButton settingsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         alarmButton = (ImageButton)findViewById(R.id.alarmButton);
         adviceButton = (ImageButton)findViewById(R.id.advice_button);
         informationButton = (ImageButton)findViewById(R.id.informationButton);
+        settingsButton = (ImageButton)findViewById(R.id.settingsButton);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +76,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentLoadNewActivity = new Intent(MainActivity.this, Information.class);
+                startActivity(intentLoadNewActivity);
+            }
+        });
+
+        ///
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentLoadNewActivity = new Intent(MainActivity.this, Settings.class);
                 startActivity(intentLoadNewActivity);
             }
         });

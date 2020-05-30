@@ -47,7 +47,7 @@
             app:srcCompat="@drawable/lista_zakupow_btn" />
 
         <ImageButton
-            android:id="@+id/imageButton5"
+            android:id="@+id/settingsButton"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="177dp"
             android:layout_height="177dp"

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Settings">
+
+    <RelativeLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="Ustawienia"
+            android:textColor="@color/gray"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <Switch
+            android:id="@+id/darkModeSwitch"
+            android:layout_width="59dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/textView11"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="34dp"
+            android:layout_marginLeft="34dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="38dp"
+            android:layout_marginRight="38dp"
+            android:layout_toEndOf="@+id/textView11"
+            android:layout_toRightOf="@+id/textView11"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="218dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/textView11"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="-119dp"
+            android:layout_marginRight="-119dp"
+            android:layout_toStartOf="@+id/textView11"
+            android:layout_toLeftOf="@+id/textView11"
+            android:text="Tryb ciemny"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="245dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView12"
+            android:layout_alignStart="@+id/textView12"
+            android:layout_alignLeft="@+id/textView12"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="31dp"
+            android:text="Powiadomienia push"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="245dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView12"
+            android:layout_alignStart="@+id/textView12"
+            android:layout_alignLeft="@+id/textView12"
+            android:layout_marginStart="-0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="128dp"
+            android:text="Oceń aplikację"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="245dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView12"
+            android:layout_alignStart="@+id/textView12"
+            android:layout_alignLeft="@+id/textView12"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="176dp"
+            android:text="Napisz do nas"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="33dp"
+            android:layout_below="@+id/textView13"
+            android:layout_alignStart="@+id/textView13"
+            android:layout_alignLeft="@+id/textView13"
+            android:layout_marginStart="-1dp"
+            android:layout_marginLeft="-1dp"
+            android:layout_marginTop="5dp"
+            android:text="(powiadomienia o aktualizacjach informacji)" />
+
+        <Switch
+            android:id="@+id/pushSwitch"
+            android:layout_width="59dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/darkModeSwitch"
+            android:layout_alignEnd="@+id/darkModeSwitch"
+            android:layout_alignRight="@+id/darkModeSwitch"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="-1dp"
+            android:layout_marginRight="0dp" />
+
+        <ImageButton
+            android:id="@+id/mail_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rateUsButton"
+            android:layout_marginStart="61dp"
+            android:layout_marginLeft="61dp"
+            android:layout_marginTop="26dp"
+            android:layout_toEndOf="@+id/textView18"
+            android:layout_toRightOf="@+id/textView18"
+            android:background="#FFFFFF"
+            android:tint="#434242"
+            app:srcCompat="@android:drawable/ic_dialog_email" />
+
+        <Button
+            android:id="@+id/importButton"
+            android:layout_width="150dp"
+            android:layout_height="116dp"
+            android:layout_below="@+id/textView18"
+            android:layout_alignStart="@+id/textView18"
+            android:layout_alignLeft="@+id/textView18"
+            android:layout_marginStart="-3dp"
+            android:layout_marginLeft="-3dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/rounded_btn"
+            android:text="Importuj dane"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/statsButton"
+            android:layout_width="223dp"
+            android:layout_height="62dp"
+            android:layout_below="@+id/textView18"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="179dp"
+            android:background="@drawable/rounded_btn"
+            android:text="Synchronizuj statystyki"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/exportButton"
+            android:layout_width="150dp"
+            android:layout_height="116dp"
+            android:layout_below="@+id/textView18"
+            android:layout_alignStart="@+id/textView18"
+            android:layout_alignLeft="@+id/textView18"
+            android:layout_marginStart="193dp"
+            android:layout_marginLeft="193dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/rounded_btn"
+            android:text="Eksportuj dane"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/rateUsButton"
+            style="@style/Widget.AppCompat.ImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pushSwitch"
+            android:layout_marginStart="59dp"
+            android:layout_marginLeft="59dp"
+            android:layout_marginTop="40dp"
+            android:layout_toEndOf="@+id/textView15"
+            android:layout_toRightOf="@+id/textView15"
+            android:background="@color/light_gray"
+            app:srcCompat="@android:drawable/btn_star_big_on" />
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
