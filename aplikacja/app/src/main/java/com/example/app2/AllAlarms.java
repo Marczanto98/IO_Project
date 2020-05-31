@@ -15,7 +15,6 @@ import java.util.List;
 
 public class AllAlarms extends AppCompatActivity {
     private Button newAlarm;
-    private ImageButton backButton;
     private ListView alarmList;
     private ArrayAdapter<NewAlarm> adapter;
 
@@ -26,20 +25,12 @@ public class AllAlarms extends AppCompatActivity {
         setContentView(R.layout.all_alarms);
 
         newAlarm = (Button)findViewById(R.id.new_alarm);
-        backButton = findViewById(R.id.back);
 
         newAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intentLoadNewActivity = new Intent(AllAlarms.this, AlarmActivity.class);
                 startActivity(intentLoadNewActivity);
-            }
-        });
-
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
             }
         });
 

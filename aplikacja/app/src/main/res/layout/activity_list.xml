@@ -52,7 +52,7 @@
             android:layout_width="388dp"
             android:layout_marginTop="55dp"
             android:transcriptMode="alwaysScroll"
-            android:layout_height="300dp"
+            android:layout_height="400dp"
             android:layout_below="@+id/linearLayout"
             android:layout_centerHorizontal="true"/>
 
