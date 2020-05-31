@@ -61,23 +61,24 @@ public class AlarmListAdapter extends ArrayAdapter<NewAlarm> implements AdapterV
             viewHolder.isOn = (Switch)view.findViewById(R.id.switchon);
             viewHolder.deleteBtn = (ImageButton)view.findViewById(R.id.deleteBtn);
 
+            //TODO
+            //fix removing items
             viewHolder.deleteBtn.setOnClickListener(this::removeAlarmOnClickHandler);
 
-            /*viewHolder.name.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    NewAlarm itemtoremove = (NewAlarm) v.getTag();
-
-                }
-
-            });*/
 
             viewHolder.isOn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     NewAlarm element = (NewAlarm)viewHolder.isOn.getTag();
+
                     element.setSwitch(buttonView.isChecked());
+
+                    //TODO
+                    //fix updating switch on change
+
+                    int index = getAlarmPosition(element);
+                    items.set(index, element);
+
 
                     if(buttonView.isChecked()){
                         String[] time = element.getTime().split(":");
@@ -102,8 +103,8 @@ public class AlarmListAdapter extends ArrayAdapter<NewAlarm> implements AdapterV
                         long alarmStartTime = startTime.getTimeInMillis();
 
                         // Set alarm.
-                        // set(type, milliseconds, intent)
-                        alarm.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
+                        // setInexactRepeating(type, milliseconds, interval, intent)
+                        alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, alarmStartTime, AlarmManager.INTERVAL_DAY, alarmIntent);
 
                     }
                     else{
@@ -127,6 +128,8 @@ public class AlarmListAdapter extends ArrayAdapter<NewAlarm> implements AdapterV
         holder.name.setText(items.get(position).getName());
         holder.time.setText(items.get(position).getTime());
         holder.isOn.setChecked(items.get(position).isSwitchOn());
+
+        saveData();
         return view;
     }
 
@@ -152,11 +155,21 @@ public class AlarmListAdapter extends ArrayAdapter<NewAlarm> implements AdapterV
     }
 
     private void removeAlarmOnClickHandler(View view){
-        loadData();
-        NewAlarm itemToRemove = (NewAlarm)view.getTag();
-        this.remove(itemToRemove);
+        //loadData();
+        new AlertDialog.Builder(context).setTitle("touched").show();
+        /*NewAlarm itemToRemove = (NewAlarm)view.getTag();
+        remove(itemToRemove);
         items.remove(itemToRemove);
-        this.notifyDataSetChanged();
-        saveData();
+        notifyDataSetChanged();
+        saveData();*/
+    }
+
+    private int getAlarmPosition(NewAlarm copy){
+        int result = 0;
+        for(int i=0; i<items.size(); i++){
+            if(items.get(i).getId() == copy.getId())
+                result = i;
+        }
+        return result;
     }
 }

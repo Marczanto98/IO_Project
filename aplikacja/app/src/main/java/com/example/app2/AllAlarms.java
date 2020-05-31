@@ -36,7 +36,6 @@ public class AllAlarms extends AppCompatActivity {
         setContentView(R.layout.all_alarms);
 
         newAlarm = (Button)findViewById(R.id.new_alarm);
-        //backButton = findViewById(R.id.back);
 
         newAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,13 +44,6 @@ public class AllAlarms extends AppCompatActivity {
                 startActivity(intentLoadNewActivity);
             }
         });
-
-        /*backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });*/
 
         loadData();
         adapter = new AlarmListAdapter(this, items);

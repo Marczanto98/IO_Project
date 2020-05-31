@@ -72,7 +72,7 @@ public class AlarmActivity extends AppCompatActivity implements View.OnClickList
 
                 // Set alarm.
                 // set(type, milliseconds, intent)
-                alarm.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
+                alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, alarmStartTime, AlarmManager.INTERVAL_DAY, alarmIntent);
 
                 Toast.makeText(this, "Zapisano!", Toast.LENGTH_SHORT).show();
 
