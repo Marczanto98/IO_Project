@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants">
 
     <TextView
         android:id="@+id/time"
@@ -13,7 +14,8 @@
         android:layout_weight="1"
         android:text="15:28"
         android:textColor="#03DAC5"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:focusable="false"/>
 
     <TextView
         android:id="@+id/label"
@@ -21,12 +23,14 @@
         android:layout_height="47dp"
         android:layout_marginLeft="10dp"
         android:text="@+id/label"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:focusable="false"/>
 
     <Switch
         android:id="@+id/switchon"
         android:layout_width="65dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:focusable="false"/>
 
     <ImageButton
         android:id="@+id/deleteBtn"
@@ -37,6 +41,7 @@
         android:background="#8AFFFFFF"
         android:onClick="removeAlarmOnClickHandler"
         android:tint="@color/gray"
-        app:srcCompat="@android:drawable/ic_menu_delete" />
+        app:srcCompat="@android:drawable/ic_menu_delete"
+        android:focusable="false"/>
 
 </LinearLayout>
