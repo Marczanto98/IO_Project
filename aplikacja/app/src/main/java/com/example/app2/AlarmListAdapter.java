@@ -29,12 +29,14 @@ import java.util.List;
 
 public class AlarmListAdapter extends ArrayAdapter<NewAlarm> implements AdapterView.OnItemClickListener {
     private List<NewAlarm> items;
+    //private List<NewAlarm> itemsFromAllAlarms;
     private Activity context;
 
     public AlarmListAdapter(Activity context, List<NewAlarm> list){
         super(context, R.layout.alarm_list, list);
         this.context = context;
         this.items = list;
+        //loadData();
     }
 
     @Override
@@ -61,23 +63,25 @@ public class AlarmListAdapter extends ArrayAdapter<NewAlarm> implements AdapterV
             viewHolder.isOn = (Switch)view.findViewById(R.id.switchon);
             viewHolder.deleteBtn = (ImageButton)view.findViewById(R.id.deleteBtn);
 
-            viewHolder.deleteBtn.setOnClickListener(this::removeAlarmOnClickHandler);
+            //TODO
+            //fix removing items
+            /*viewHolder.deleteBtn.setOnClickListener(this::removeAlarmOnClickHandler);
 
-            /*viewHolder.name.setOnClickListener(new View.OnClickListener() {
 
-                @Override
-                public void onClick(View v) {
-                    NewAlarm itemtoremove = (NewAlarm) v.getTag();
-
-                }
-
-            });*/
-
+            //fires every time AllAlarms is revisited
             viewHolder.isOn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     NewAlarm element = (NewAlarm)viewHolder.isOn.getTag();
+
                     element.setSwitch(buttonView.isChecked());
+
+                    //TODO
+                    //fix updating switch on change
+
+                    int index = getAlarmPosition(element);
+                    items.set(index, element);
+
 
                     if(buttonView.isChecked()){
                         String[] time = element.getTime().split(":");
@@ -102,8 +106,8 @@ public class AlarmListAdapter extends ArrayAdapter<NewAlarm> implements AdapterV
                         long alarmStartTime = startTime.getTimeInMillis();
 
                         // Set alarm.
-                        // set(type, milliseconds, intent)
-                        alarm.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
+                        // setInexactRepeating(type, milliseconds, interval, intent)
+                        alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, alarmStartTime, AlarmManager.INTERVAL_DAY, alarmIntent);
 
                     }
                     else{
@@ -114,7 +118,7 @@ public class AlarmListAdapter extends ArrayAdapter<NewAlarm> implements AdapterV
                         alarmManager.cancel(pendingIntent);
                     }
                 }
-            });
+            });*/
 
             view.setTag(viewHolder);
             viewHolder.isOn.setTag(items.get(position));
@@ -127,6 +131,8 @@ public class AlarmListAdapter extends ArrayAdapter<NewAlarm> implements AdapterV
         holder.name.setText(items.get(position).getName());
         holder.time.setText(items.get(position).getTime());
         holder.isOn.setChecked(items.get(position).isSwitchOn());
+
+        //saveData();
         return view;
     }
 
@@ -135,10 +141,10 @@ public class AlarmListAdapter extends ArrayAdapter<NewAlarm> implements AdapterV
         Gson gson = new Gson();
         String json = sharedPreferences.getString("alarm list", null);
         Type type = new TypeToken<ArrayList<NewAlarm>>(){}.getType();
-        items = gson.fromJson(json, type);
+        items/*FromAllAlarms*/ = gson.fromJson(json, type);
 
-        if(items == null){
-            items = new ArrayList<NewAlarm>();
+        if(items/*FromAllAlarms*/ == null){
+            items/*FromAllAlarms*/ = new ArrayList<NewAlarm>();
         }
     }
 
@@ -146,17 +152,31 @@ public class AlarmListAdapter extends ArrayAdapter<NewAlarm> implements AdapterV
         SharedPreferences sharedPreferences = context.getSharedPreferences("shared preferences", context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
-        String json = gson.toJson(items);
+        String json = gson.toJson(items/*FromAllAlarms*/);
         editor.putString("alarm list", json);
         editor.apply();
     }
 
     private void removeAlarmOnClickHandler(View view){
-        loadData();
+        //loadData();
+        //new AlertDialog.Builder(context).setTitle("touched").show();
         NewAlarm itemToRemove = (NewAlarm)view.getTag();
-        this.remove(itemToRemove);
+        //itemsFromAllAlarms.remove(itemToRemove);
         items.remove(itemToRemove);
-        this.notifyDataSetChanged();
-        saveData();
+        Toast.makeText(context, "Deleted", Toast.LENGTH_LONG).show();
+        remove(itemToRemove);
+        notifyDataSetChanged();
+        //saveData();
     }
+
+    private int getAlarmPosition(NewAlarm copy){
+        int result = 0;
+        for(int i=0; i<items.size(); i++){
+            if(items.get(i).getId() == copy.getId())
+                result = i;
+        }
+        return result;
+    }
+
 }
+

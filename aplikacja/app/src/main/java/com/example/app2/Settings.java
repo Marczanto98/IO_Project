@@ -89,7 +89,7 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
                     settingList.set(1, 0);
                     Toast.makeText(Settings.this, "Wyłączono powiadomienia push", Toast.LENGTH_SHORT).show();
                 }
-                    System.out.println(settingList);
+                System.out.println(settingList);
                 SettingsFile.writeData(settingList, Settings.this);
                 setPushNotifications(settingList.get(1) == 1);
 

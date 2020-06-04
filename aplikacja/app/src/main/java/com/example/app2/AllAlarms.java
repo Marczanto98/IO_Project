@@ -1,5 +1,8 @@
 package com.example.app2;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -24,7 +27,7 @@ import java.util.List;
 
 public class AllAlarms extends AppCompatActivity {
     private Button newAlarm;
-    private ImageButton backButton;
+    //private ImageButton backButton;
     private ListView alarmList;
     private ArrayAdapter<NewAlarm> adapter;
     private ArrayList<NewAlarm> items;
@@ -36,7 +39,6 @@ public class AllAlarms extends AppCompatActivity {
         setContentView(R.layout.all_alarms);
 
         newAlarm = (Button)findViewById(R.id.new_alarm);
-        backButton = findViewById(R.id.back);
 
         newAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,29 +48,31 @@ public class AllAlarms extends AppCompatActivity {
             }
         });
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
         loadData();
         adapter = new AlarmListAdapter(this, items);
         alarmList = findViewById(R.id.alarms_list);
         alarmList.setAdapter(adapter);
 
-        /*alarmList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        alarmList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                NewAlarm itemToRemove = (NewAlarm) view.getTag();
-                items.remove(itemToRemove);
-                adapter.remove(itemToRemove);
+                //TODO
+                //Cancel alarm - jeszcze nie działa
+                NewAlarm itemToRemove = items.get(position);
+                Intent intent = new Intent(AllAlarms.this, AlarmReceiver.class);
+                int alarm_id = itemToRemove.getId();
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(AllAlarms.this, alarm_id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                alarmManager.cancel(pendingIntent);
+
+                //remove from listview
+                items.remove(position);
                 saveData();
+                adapter.notifyDataSetChanged();
                 Toast.makeText(AllAlarms.this, "Usunięto", Toast.LENGTH_SHORT).show();
             }
         });
-         */
+
         //saveData();
     }
 
