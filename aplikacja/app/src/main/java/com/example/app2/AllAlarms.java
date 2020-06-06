@@ -27,7 +27,6 @@ import java.util.List;
 
 public class AllAlarms extends AppCompatActivity {
     private Button newAlarm;
-    //private ImageButton backButton;
     private ListView alarmList;
     private ArrayAdapter<NewAlarm> adapter;
     private ArrayList<NewAlarm> items;

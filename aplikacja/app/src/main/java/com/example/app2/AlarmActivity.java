@@ -26,12 +26,18 @@ import java.util.List;
 public class AlarmActivity extends AppCompatActivity implements View.OnClickListener{
     private static int notificationId = 1;
     private List<NewAlarm> items;
+    EditText alarmName;
+    TimePicker timePicker;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm);
+
+        alarmName = findViewById(R.id.alarmName);
+        timePicker = findViewById(R.id.timePicker);
+        timePicker.setIs24HourView(true);
 
         // Set Onclick Listener.
         findViewById(R.id.setBtn).setOnClickListener(this);
@@ -42,23 +48,21 @@ public class AlarmActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        EditText alarmName = findViewById(R.id.alarmName);
-        TimePicker timePicker = findViewById(R.id.timePicker);
-
-        // Set notificationId & text.
-        Intent intent = new Intent(AlarmActivity.this, AlarmReceiver.class);
-        intent.putExtra("notificationId", notificationId);
-        intent.putExtra("todo", alarmName.getText().toString());
-
-        // getBroadcast(context, requestCode, intent, flags)
-        PendingIntent alarmIntent = PendingIntent.getBroadcast(AlarmActivity.this, 0,
-                intent, PendingIntent.FLAG_CANCEL_CURRENT);
-
-        AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
 
         switch (v.getId()) {
             case R.id.setBtn:
                 notificationId ++;
+
+                // Set notificationId & text.
+                Intent intent = new Intent(AlarmActivity.this, AlarmReceiver.class);
+                intent.putExtra("notificationId", notificationId);
+                intent.putExtra("todo", alarmName.getText().toString());
+
+                // getBroadcast(context, requestCode, intent, flags)
+                PendingIntent alarmIntent = PendingIntent.getBroadcast(AlarmActivity.this, notificationId,
+                        intent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+                AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
 
                 Integer hour = timePicker.getCurrentHour();
                 Integer minute = timePicker.getCurrentMinute();
