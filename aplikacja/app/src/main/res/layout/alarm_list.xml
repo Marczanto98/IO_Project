@@ -19,29 +19,11 @@
 
     <TextView
         android:id="@+id/label"
-        android:layout_width="121dp"
+        android:layout_width="238dp"
         android:layout_height="47dp"
         android:layout_marginLeft="10dp"
+        android:focusable="false"
         android:text="@+id/label"
-        android:textSize="18sp"
-        android:focusable="false"/>
-
-    <Switch
-        android:id="@+id/switchon"
-        android:layout_width="65dp"
-        android:layout_height="wrap_content"
-        android:focusable="false"/>
-
-    <ImageButton
-        android:id="@+id/deleteBtn"
-        android:layout_width="39dp"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_weight="1"
-        android:background="#8AFFFFFF"
-        android:onClick="removeAlarmOnClickHandler"
-        android:tint="@color/gray"
-        app:srcCompat="@android:drawable/ic_menu_delete"
-        android:focusable="false"/>
+        android:textSize="18sp" />
 
 </LinearLayout>
