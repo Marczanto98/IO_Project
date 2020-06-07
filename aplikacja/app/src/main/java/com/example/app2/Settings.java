@@ -29,9 +29,6 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
     Switch darkModeSwitch;
     Switch pushButton;
     ImageButton mailButton;
-    ImageButton rateUsButton;
-    Button importButton;
-    Button exportButton;
     ArrayList<Integer> settingList;
 
     @Override
@@ -41,10 +38,14 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
         mailButton = (ImageButton)findViewById(R.id.mail_button);
         darkModeSwitch = (Switch)findViewById(R.id.darkModeSwitch);
         pushButton = (Switch)findViewById(R.id.pushSwitch);
-        importButton = (Button)findViewById(R.id.importButton);
-        exportButton = (Button)findViewById(R.id.exportButton);
         settingList = new ArrayList<>();
         settingList = SettingsFile.readData(this);
+
+        if(SettingsFile.readData(this).size() ==0){
+            settingList.add(0);
+            settingList.add(1);
+            SettingsFile.writeData(settingList, Settings.this);
+        }
         System.out.println(settingList);
 
         setSwitch();
@@ -96,19 +97,6 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
             }
         });
 
-        importButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(Settings.this, "Import danych...", Toast.LENGTH_LONG).show();
-            }
-        });
-
-        exportButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(Settings.this, "Eksport danych...", Toast.LENGTH_LONG).show();
-            }
-        });
     }
 
 
