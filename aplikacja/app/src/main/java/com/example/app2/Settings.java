@@ -29,9 +29,6 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
     Switch darkModeSwitch;
     Switch pushButton;
     ImageButton mailButton;
-    ImageButton rateUsButton;
-    Button importButton;
-    Button exportButton;
     ArrayList<Integer> settingList;
 
     @Override
@@ -43,6 +40,12 @@ public class Settings extends AppCompatActivity implements View.OnClickListener 
         pushButton = (Switch)findViewById(R.id.pushSwitch);
         settingList = new ArrayList<>();
         settingList = SettingsFile.readData(this);
+
+        if(SettingsFile.readData(this).size() ==0){
+            settingList.add(0);
+            settingList.add(1);
+            SettingsFile.writeData(settingList, Settings.this);
+        }
         System.out.println(settingList);
 
         setSwitch();
