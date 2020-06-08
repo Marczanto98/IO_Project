@@ -87,25 +87,4 @@ public class NewsFragment extends Fragment {
         });
     }
 
-    private void initListner()
-    {
-        adapter.setOnItemClickListener(new Adapter.OnItemClickListener()
-        {
-            @Override
-            public void onItemClick(View view, int position)
-            {
-                Intent intent = new Intent(getContext(), NewsDetailActivity.class);
-
-                Article article = articles.get(position);
-                intent.putExtra("url", article.getUrl());
-                intent.putExtra("title", article.getTitle());
-                intent.putExtra("img", article.getUrlToImage());
-                intent.putExtra("date", article.getPublishedAt());
-                intent.putExtra("source", article.getSource().getName());
-                intent.putExtra("author", article.getAuthor());
-
-                startActivity(intent);
-            }
-        });
-    }
 }
