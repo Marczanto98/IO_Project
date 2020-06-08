@@ -1,7 +1,6 @@
 package com.example.app2;
 
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieVH> {
+public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MovieVH> {
 
     private static final String TAG = "MovieAdapter";
     List<Info> movieList;
 
-    public MovieAdapter(List<Info> movieList) {
+    public ListAdapter(List<Info> movieList) {
         this.movieList = movieList;
     }
 
